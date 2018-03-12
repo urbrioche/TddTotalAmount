@@ -20,5 +20,10 @@ namespace TddTotalAmount
                 return DateTime.ParseExact(YearMonth + daysInMonth, "yyyyMMdd", null);
             }
         }
+
+        public int DailyAmount()
+        {
+            return Amount / (LastDay.AddDays(1) - FirstDay).Days;
+        }
     }
 }
