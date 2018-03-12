@@ -9,6 +9,9 @@ namespace TddTotalAmount
 
         public Period(DateTime startDate, DateTime endDate)
         {
+            if (startDate > endDate)
+                throw new ArgumentException();
+            
             this.StartDate = startDate;
             this.EndDate = endDate;
         }
