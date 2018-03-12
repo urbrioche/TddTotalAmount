@@ -18,28 +18,10 @@ namespace TddTotalAmount
             var budgets = _repository.GetAll();
             if (budgets.Any())
             {
-                var days = period.EffectiveDays();
+                var days = period.EffectiveDays(budgets[0]);
                 return days;
             }
             return 0;
-        }
-    }
-
-    internal class Period
-    {
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-
-        public Period(DateTime startDate, DateTime endDate)
-        {
-            this.StartDate = startDate;
-            this.EndDate = endDate;
-        }
-
-        public int EffectiveDays()
-        {
-            var days = (EndDate.AddDays(1) - StartDate).Days;
-            return days;
         }
     }
 }
