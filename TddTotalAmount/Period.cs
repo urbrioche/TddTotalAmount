@@ -13,7 +13,7 @@ namespace TddTotalAmount
             this.EndDate = endDate;
         }
 
-        public int EffectiveDays(Period period)
+        public int OverlappingDays(Period period)
         {
             if (EndDate < period.StartDate)
             {
