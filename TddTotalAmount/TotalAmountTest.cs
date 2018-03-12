@@ -41,6 +41,13 @@ namespace TddTotalAmount
             TotalAmountShouldBe(0, new DateTime(2018, 3, 31), new DateTime(2018, 3, 31));
         }
 
+        [TestMethod]
+        public void no_effective_day_period_after_budget_month()
+        {
+            GivenBudgets(new Budget { YearMonth = "201804", Amount = 30 });
+            TotalAmountShouldBe(0, new DateTime(2018, 5, 1), new DateTime(2018, 5, 1));
+        }
+
         private void TotalAmountShouldBe(int expected, DateTime start, DateTime end)
         {
             Assert.AreEqual(expected, _accounting.TotalAmount(start, end));
