@@ -1,12 +1,19 @@
-﻿namespace TddTotalAmount
+﻿using System;
+
+namespace TddTotalAmount
 {
     public class Accounting
     {
-        private IRespository<Budget> _respository;
+        private IRepository<Budget> _repository;
 
-        public Accounting(IRespository<Budget> respository)
+        public Accounting(IRepository<Budget> repository)
         {
-            _respository = respository;
+            _repository = repository;
+        }
+
+        public decimal TotalAmount(DateTime start, DateTime end)
+        {
+            return 0;
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace TddTotalAmount
 {
-    public interface IRespository<T>
+    public interface IRepository<T>
     {
         List<T> GetAll();
     }
