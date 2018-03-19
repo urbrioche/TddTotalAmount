@@ -11,15 +11,30 @@ namespace TddTotalAmount
     [TestClass]
     public class TotalAmountTest
     {
+        private IRepository<Budget> _repository = Substitute.For<IRepository<Budget>>();
+        private Accounting _accounting;
+
+               [TestInitialize]
+        public void TestInit()
+        {
+            _accounting = new Accounting(_repository);
+        }
+
         [TestMethod]
         public void No_Budgets()
         {
-            var repository = Substitute.For<IRepository<Budget>>();
-            repository.GetAll().Returns(new List<Budget>());
+            GivenBudgets();
+            TotalAmountShouldBe(0, new DateTime(2018, 4, 1), new DateTime(2018, 4, 1));
+        }
 
-            var accounting = new Accounting(repository);
-            var totalAmount = accounting.TotalAmount(new DateTime(2018, 4, 1), new DateTime(2018, 4, 1));
-            Assert.AreEqual(0, totalAmount);
+        private void TotalAmountShouldBe(int expected, DateTime startDate, DateTime endDate)
+        {
+            Assert.AreEqual(expected, _accounting.TotalAmount(startDate, endDate));
+        }
+
+        private void GivenBudgets(params Budget[] budgets)
+        {
+            _repository.GetAll().Returns(budgets.ToList());
         }
     }
 }
