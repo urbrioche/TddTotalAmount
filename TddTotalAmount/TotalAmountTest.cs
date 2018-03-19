@@ -48,6 +48,13 @@ namespace TddTotalAmount
             TotalAmountShouldBe(0, new DateTime(2018, 5, 1), new DateTime(2018, 5, 1));
         }
 
+        [TestMethod]
+        public void One_Effective_Day_Period_Overlap_Budget_Month_FirstDay()
+        {
+            GivenBudgets(new Budget { YearMonth = "201804", Amount = 30 });
+            TotalAmountShouldBe(1, new DateTime(2018, 3, 31), new DateTime(2018, 4, 1));
+        }
+
         private void TotalAmountShouldBe(int expected, DateTime startDate, DateTime endDate)
         {
             Assert.AreEqual(expected, _accounting.TotalAmount(startDate, endDate));
