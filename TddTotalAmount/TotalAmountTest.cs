@@ -30,8 +30,15 @@ namespace TddTotalAmount
         [TestMethod]
         public void One_Effective_Day_Period_Inside_Budget_Month()
         {
-            GivenBudgets(new Budget { YearMonth = "20180401", Amount = 30 });
+            GivenBudgets(new Budget { YearMonth = "201804", Amount = 30 });
             TotalAmountShouldBe(1, new DateTime(2018, 4, 1), new DateTime(2018, 4, 1));
+        }
+
+        [TestMethod]
+        public void No_Effective_Day_Period_Before_Budget_Month()
+        {
+            GivenBudgets(new Budget { YearMonth = "201804", Amount = 30 });
+            TotalAmountShouldBe(0, new DateTime(2018, 3, 31), new DateTime(2018, 3, 31));
         }
 
         private void TotalAmountShouldBe(int expected, DateTime startDate, DateTime endDate)

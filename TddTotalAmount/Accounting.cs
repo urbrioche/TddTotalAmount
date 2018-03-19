@@ -18,7 +18,7 @@ namespace TddTotalAmount
             var budgets = _repository.GetAll();
             if (budgets.Any())
             {
-                return period.EffectiveDays();
+                return period.EffectiveDays(budgets[0]);
             }
 
             return 0;
