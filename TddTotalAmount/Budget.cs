@@ -35,5 +35,12 @@ namespace TddTotalAmount
         {
             return Amount / TotalDays;
         }
+
+        public decimal EffectiveAmount(Period period)
+        {
+            var dailyAmount = DailyAmount();
+            var overlappingDays = period.OverlappingDays(new Period(FirstDay, LastDay));
+            return dailyAmount * overlappingDays;
+        }
     }
 }
