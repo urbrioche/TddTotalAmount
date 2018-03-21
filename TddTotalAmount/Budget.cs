@@ -19,8 +19,7 @@ namespace TddTotalAmount
         {
             get
             {
-                var daysInMonth = DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month);
-                return DateTime.ParseExact(YearMonth + daysInMonth, "yyyyMMdd", null);
+                return DateTime.ParseExact(YearMonth + TotalDays, "yyyyMMdd", null);
             }
         }
 
@@ -30,6 +29,11 @@ namespace TddTotalAmount
             {
                 return DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month);
             }
+        }
+
+        public int DailyAmount()
+        {
+            return Amount / TotalDays;
         }
     }
 }
