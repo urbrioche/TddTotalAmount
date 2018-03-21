@@ -13,30 +13,28 @@ namespace TddTotalAmount
             EndDate = endDate;
         }
 
-        public int EffectiveDays(Budget budget)
+        public int OverlappingDays(Period period)
         {
-            if (StartDate > budget.LastDay)
+            if (StartDate > period.EndDate)
             {
                 return 0;
             }
 
-            if (EndDate < budget.FirstDay)
+            if (EndDate < period.StartDate)
             {
                 return 0;
             }
 
-            var effectiveEndDate = EndDate > budget.LastDay
-                ? budget.LastDay :
+            var effectiveEndDate = EndDate > period.EndDate
+                ? period.EndDate :
                 EndDate;
 
-            var effectiveStartDate = StartDate < budget.FirstDay
-                ? budget.FirstDay
+            var effectiveStartDate = StartDate < period.StartDate
+                ? period.StartDate
                 : StartDate;
 
             var days = (effectiveEndDate.AddDays(1) - effectiveStartDate).Days;
             return days;
-
-            return (EndDate.AddDays(1) - StartDate).Days;
         }
     }
 }
