@@ -19,7 +19,7 @@ namespace TddTotalAmount
 
             if (budgets.Any())
             {
-                return period.EffectiveDays();
+                return period.EffectiveDays(budgets[0]);
             }
             return 0;
         }
