@@ -16,6 +16,10 @@ namespace TddTotalAmount
 
         public int EffectiveDays(Budget budget)
         {
+            if (StartDate > budget.EndDate)
+            {
+                return 0;
+            }
             if (EndDate < budget.StartDate)
             {
                 return 0;
