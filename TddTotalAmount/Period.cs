@@ -26,7 +26,7 @@ namespace TddTotalAmount
             }
 
 
-            var effectiveEndDate = EndDate;
+            var effectiveEndDate = EndDate > budget.LastDay ? budget.LastDay : EndDate;
             var effectiveStartDate = StartDate < budget.FirstDay ? budget.FirstDay : StartDate;
             return (effectiveEndDate.AddDays(1) - effectiveStartDate).Days;
         }
