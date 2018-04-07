@@ -22,5 +22,10 @@ namespace TddTotalAmount
         {
             get { return DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month); }
         }
+
+        public int DailyAmount()
+        {
+            return Amount / TotalDays;
+        }
     }
 }
