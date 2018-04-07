@@ -75,7 +75,6 @@ namespace TddTotalAmount
             TotalAmountShouldBe(20, new DateTime(2018, 4, 1), new DateTime(2018, 4, 2));
         }
 
-        [Ignore]
         [TestMethod]
         public void multiple_budgets()
         {
