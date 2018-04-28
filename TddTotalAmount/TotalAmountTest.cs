@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
@@ -20,21 +21,14 @@ namespace TddTotalAmount
         [TestMethod]
         public void no_budget()
         {
-            GivenBudgets(new List<Budget>());
+            GivenBudgets();
             TotalAmountShouldBe(0, new DateTime(2018, 4, 1), new DateTime(2018, 4, 1));
         }
 
         [TestMethod]
         public void one_effective_day_period_inside_budget_month()
         {
-            GivenBudgets(new List<Budget>()
-            {
-                new Budget
-                {
-                    YearMonth = "201804",
-                    Amount = 30
-                }
-            });
+            GivenBudgets(new Budget {YearMonth = "201804", Amount = 30});
 
             TotalAmountShouldBe(1, new DateTime(2018, 4, 1), new DateTime(2018, 4, 1));
         }
@@ -46,9 +40,9 @@ namespace TddTotalAmount
         }
 
 
-        private void GivenBudgets(List<Budget> budgets)
+        private void GivenBudgets(params Budget[] budgets)
         {
-            _repository.GetAll().Returns(budgets);
+            _repository.GetAll().Returns(budgets.ToList());
         }
     }
 }
