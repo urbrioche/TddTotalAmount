@@ -59,11 +59,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Accounting.cs" />
-    <Compile Include="Budget.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="Period.cs" />
-    <Compile Include="TotalAmountTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
