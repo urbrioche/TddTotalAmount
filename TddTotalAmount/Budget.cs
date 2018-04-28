@@ -7,22 +7,22 @@ namespace TddTotalAmount
         public string YearMonth { get; set; }
         public int Amount { get; set; }
 
-        public DateTime FirstDay
+        private DateTime FirstDay
         {
             get { return DateTime.ParseExact(YearMonth + "01", "yyyyMMdd", null); }
         }
 
-        public DateTime LastDay
+        private DateTime LastDay
         {
             get { return DateTime.ParseExact(YearMonth + DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month), "yyyyMMdd", null); }
         }
 
-        public int TotalDays
+        private int TotalDays
         {
             get { return (LastDay.AddDays(1) - FirstDay).Days; }
         }
 
-        public int DailyAmount()
+        private int DailyAmount()
         {
             return Amount / TotalDays;
         }
