@@ -1,0 +1,18 @@
+﻿using System;
+
+namespace TddTotalAmount
+{
+    public class Accounting
+    {
+        private IRepository<Budget> _repo;
+
+        public Accounting(IRepository<Budget> repo)
+        {
+            _repo = repo;
+        }
+        public decimal TotalAmount(DateTime startDate, DateTime endDate)
+        {
+            return 0;
+        }
+    }
+}
