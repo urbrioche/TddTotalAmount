@@ -20,6 +20,11 @@ namespace TddTotalAmount
             {
                 return 0;
             }
+
+            if (StartDate > budget.LastDay)
+            {
+                return 0;
+            }
             return (EndDate.AddDays(1) - StartDate).Days;
         }
     }
