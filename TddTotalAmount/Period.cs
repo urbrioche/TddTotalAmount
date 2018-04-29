@@ -6,6 +6,10 @@ namespace TddTotalAmount
     {
         public Period(DateTime startDate, DateTime endDate)
         {
+            if (startDate > endDate)
+            {
+                throw new ArgumentException();
+            }
             StartDate = startDate;
             EndDate = endDate;
         }
@@ -25,7 +29,7 @@ namespace TddTotalAmount
                 return 0;
             }
 
-            var effectiveEndDate = EndDate > period.EndDate ? period.EndDate: EndDate;
+            var effectiveEndDate = EndDate > period.EndDate ? period.EndDate : EndDate;
 
             var effectiveStartDate = StartDate < period.StartDate ? period.StartDate : StartDate;
             return (effectiveEndDate.AddDays(1) - effectiveStartDate).Days;
