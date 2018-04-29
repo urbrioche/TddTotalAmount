@@ -14,8 +14,12 @@ namespace TddTotalAmount
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
 
-        public int EffectiveDays()
+        public int EffectiveDays(Budget budget)
         {
+            if (EndDate < budget.FirstDay)
+            {
+                return 0;
+            }
             return (EndDate.AddDays(1) - StartDate).Days;
         }
     }
@@ -34,7 +38,7 @@ namespace TddTotalAmount
             var budgets = _repo.GetAll();
             if (budgets.Any())
             {
-                return new Period(startDate, endDate).EffectiveDays();
+                return new Period(startDate, endDate).EffectiveDays(budgets[0]);
             }
             return 0;
         }
