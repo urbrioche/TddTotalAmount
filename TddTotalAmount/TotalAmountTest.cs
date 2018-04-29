@@ -32,14 +32,6 @@ namespace TddTotalAmount
             TotalAmountShouldBe(1, new DateTime(2018, 4, 1), new DateTime(2018, 4, 1));
         }
 
-        [ExpectedException(typeof(ArgumentException))]
-        [TestMethod]
-        public void invalid_period()
-        {
-            GivenBudgets(new Budget { YearMonth = "201804", Amount = 30 });
-            TotalAmountShouldBe(1, new DateTime(2018, 4, 1), new DateTime(2018, 3, 31));
-        }
-
         [TestMethod]
         public void no_effective_day_period_before_budget_month()
         {
@@ -66,6 +58,22 @@ namespace TddTotalAmount
         {
             GivenBudgets(new Budget { YearMonth = "201804", Amount = 30 });
             TotalAmountShouldBe(1, new DateTime(2018, 4, 30), new DateTime(2018, 5, 1));
+        }
+
+
+        [ExpectedException(typeof(ArgumentException))]
+        [TestMethod]
+        public void invalid_period()
+        {
+            GivenBudgets(new Budget { YearMonth = "201804", Amount = 30 });
+            TotalAmountShouldBe(1, new DateTime(2018, 4, 1), new DateTime(2018, 3, 31));
+        }
+
+        [TestMethod]
+        public void daily_amount()
+        {
+            GivenBudgets(new Budget { YearMonth = "201804", Amount = 30 });
+            TotalAmountShouldBe(2, new DateTime(2018, 4, 1), new DateTime(2018, 4, 2));
         }
 
         private void TotalAmountShouldBe(int expected, DateTime startDate, DateTime endDate)
