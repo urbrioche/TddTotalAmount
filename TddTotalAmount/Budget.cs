@@ -30,5 +30,10 @@ namespace TddTotalAmount
                 return (LastDay.AddDays(1) - FirstDay).Days;
             }
         }
+
+        public int DailyAmount()
+        {
+            return Amount / TotalDays;
+        }
     }
 }
