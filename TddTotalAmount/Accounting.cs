@@ -3,6 +3,23 @@ using System.Linq;
 
 namespace TddTotalAmount
 {
+    public class Period
+    {
+        public Period(DateTime startDate, DateTime endDate)
+        {
+            StartDate = startDate;
+            EndDate = endDate;
+        }
+
+        public DateTime StartDate { get; private set; }
+        public DateTime EndDate { get; private set; }
+
+        public int EffectiveDays()
+        {
+            return (EndDate.AddDays(1) - StartDate).Days;
+        }
+    }
+
     public class Accounting
     {
         private IRepository<Budget> _repo;
@@ -17,14 +34,9 @@ namespace TddTotalAmount
             var budgets = _repo.GetAll();
             if (budgets.Any())
             {
-                return EffectiveDays(startDate, endDate);
+                return new Period(startDate, endDate).EffectiveDays();
             }
             return 0;
-        }
-
-        private static int EffectiveDays(DateTime startDate, DateTime endDate)
-        {
-            return (endDate.AddDays(1) - startDate).Days;
         }
     }
 }
