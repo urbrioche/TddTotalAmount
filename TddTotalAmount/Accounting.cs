@@ -16,8 +16,6 @@ namespace TddTotalAmount
         {
             var period = new Period(startDate, endDate);
             var budgets = _repository.GetAll();
-            var totalAmount = 0m;
-
             return budgets.Sum(b => b.EffectiveAmount(period));
         }
     }

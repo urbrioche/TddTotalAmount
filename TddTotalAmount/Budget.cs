@@ -7,7 +7,7 @@ namespace TddTotalAmount
         public string YearMonth { get; set; }
         public int Amount { get; set; }
 
-        public DateTime FirstDay
+        private DateTime FirstDay
         {
             get
             {
@@ -16,7 +16,7 @@ namespace TddTotalAmount
             }
         }
 
-        public DateTime LastDay
+        private DateTime LastDay
         {
             get
             {
@@ -25,7 +25,7 @@ namespace TddTotalAmount
             }
         }
 
-        public int TotalDays
+        private int TotalDays
         {
             get
             {
@@ -33,7 +33,7 @@ namespace TddTotalAmount
             }
         }
 
-        public int DailyAmount()
+        private int DailyAmount()
         {
             return Amount / TotalDays;
         }
