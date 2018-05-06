@@ -18,10 +18,11 @@ namespace TddTotalAmount
             if (budgets.Any())
             {
                 var budget = budgets[0];
+                var dailyAmount = budget.Amount / budget.TotalDays;
                 var period = new Period(startDate, endDate);
                 var days = period.OverlappingDays(new Period(budget.FirstDay, budget.LastDay));
 
-                return days;
+                return days * dailyAmount;
             }
             return 0;
         }
