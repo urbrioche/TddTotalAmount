@@ -13,13 +13,13 @@ namespace TddTotalAmount
         public DateTime StartDate { get; }
         public DateTime EndDate { get; }
 
-        public int EffectiveDays(Budget budget)
+        public int OverLappingDays(Period period)
         {
-            if (StartDate > budget.LastDay)
+            if (StartDate > period.EndDate)
             {
                 return 0;
             }
-            if (EndDate < budget.FirstDay)
+            if (EndDate < period.StartDate)
             {
                 return 0;
             }
