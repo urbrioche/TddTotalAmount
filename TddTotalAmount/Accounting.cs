@@ -18,7 +18,7 @@ namespace TddTotalAmount
             if (budgets.Any())
             {
                 var period = new Period(startDate, endDate);
-                var days = period.EffectiveDays();
+                var days = period.EffectiveDays(budgets[0]);
                 return days;
             }
 
