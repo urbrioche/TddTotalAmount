@@ -19,7 +19,7 @@ namespace TddTotalAmount
         {
             get
             {
-                return DateTime.ParseExact(YearMonth + DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month), "yyyyMMdd", null);
+                return DateTime.ParseExact(YearMonth + TotalDays, "yyyyMMdd", null);
             }
         }
 
@@ -33,15 +33,12 @@ namespace TddTotalAmount
 
         public int DailyAmount()
         {
-            var dailyAmount = Amount / TotalDays;
-            return dailyAmount;
+            return Amount / TotalDays;
         }
 
         public decimal EffectiveAmount(Period period)
         {
-            var dailyAmount = DailyAmount();
-            var days = period.OverLappingDays(new Period(FirstDay, LastDay));
-            return dailyAmount * days;
+            return DailyAmount() * period.OverLappingDays(new Period(FirstDay, LastDay));
         }
     }
 }
