@@ -15,19 +15,9 @@ namespace TddTotalAmount
         public decimal TotalAmount(DateTime startDate, DateTime endDate)
         {
             var budgets = _repository.GetAll();
-            if (budgets.Any())
-            {
-                var period = new Period(startDate, endDate);
-                var totalAmount = 0m;
-                foreach (var budget1 in budgets)
-                {
-                    totalAmount += budget1.EffectiveAmount(period);
-                }
+            var period = new Period(startDate, endDate);
 
-                return totalAmount;
-            }
-
-            return 0;
+            return budgets.Sum(b => b.EffectiveAmount(period));
         }
     }
 }
