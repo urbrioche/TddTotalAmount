@@ -14,23 +14,32 @@ namespace TddTotalAmount
             EndDate = endDate;
         }
 
-        public DateTime StartDate { get; }
         public DateTime EndDate { get; }
+        public DateTime StartDate { get; }
 
         public int OverLappingDays(Period period)
         {
-            if (StartDate > period.EndDate)
-            {
-                return 0;
-            }
-            if (EndDate < period.StartDate)
+            if (HasNoOverlapping(period))
             {
                 return 0;
             }
 
-            var effectiveEndDate = EndDate > period.EndDate ? period.EndDate : EndDate;
-            var effectiveStartDate = StartDate < period.StartDate ? period.StartDate : StartDate;
-            return (effectiveEndDate.AddDays(1) - effectiveStartDate).Days;
+            return (EffectiveEndDate(period).AddDays(1) - EffectiveStartDate(period)).Days;
+        }
+
+        private bool HasNoOverlapping(Period period)
+        {
+            return StartDate > period.EndDate || EndDate < period.StartDate;
+        }
+
+        private DateTime EffectiveStartDate(Period period)
+        {
+            return StartDate < period.StartDate ? period.StartDate : StartDate;
+        }
+
+        private DateTime EffectiveEndDate(Period period)
+        {
+            return EndDate > period.EndDate ? period.EndDate : EndDate;
         }
     }
 }
