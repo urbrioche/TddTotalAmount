@@ -18,8 +18,13 @@ namespace TddTotalAmount
             if (budgets.Any())
             {
                 var period = new Period(startDate, endDate);
-                var budget = budgets[0];
-                return budget.EffectiveAmount(period);
+                var totalAmount = 0m;
+                foreach (var budget1 in budgets)
+                {
+                    totalAmount += budget1.EffectiveAmount(period);
+                }
+
+                return totalAmount;
             }
 
             return 0;
