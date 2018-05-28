@@ -24,7 +24,7 @@ namespace TddTotalAmount
                 return 0;
             }
 
-            var effectiveEndDate = EndDate;
+            var effectiveEndDate = EndDate > period.EndDate ? period.EndDate : EndDate;
             var effectiveStartDate = StartDate < period.StartDate ? period.StartDate : StartDate;
             return (effectiveEndDate.AddDays(1) - effectiveStartDate).Days;
         }
