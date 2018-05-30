@@ -4,7 +4,6 @@ namespace TddTotalAmount
 {
     public class Budget
     {
-        public string YearMonth { get; set; }
         public int Amount { get; set; }
 
         public DateTime FirstDay
@@ -19,12 +18,13 @@ namespace TddTotalAmount
         {
             get
             {
-                var daysInMonth = DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month);
-                return DateTime.ParseExact(YearMonth + daysInMonth, "yyyyMMdd", null);
+                return DateTime.ParseExact(YearMonth + TotalDays, "yyyyMMdd", null);
             }
         }
 
-        public int TotalDays
+        public string YearMonth { get; set; }
+
+        private int TotalDays
         {
             get
             {
@@ -32,17 +32,14 @@ namespace TddTotalAmount
             }
         }
 
-        public int DailyAmount()
-        {
-            var dailyAmount = Amount / TotalDays;
-            return dailyAmount;
-        }
-
         public decimal EffectiveAmount(Period period)
         {
-            var dailyAmount = DailyAmount();
-            var days = period.OverlappingDays(new Period(FirstDay, LastDay));
-            return days * dailyAmount;
+            return period.OverlappingDays(new Period(FirstDay, LastDay)) * DailyAmount();
+        }
+
+        private int DailyAmount()
+        {
+            return Amount / TotalDays;
         }
     }
 }
