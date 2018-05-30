@@ -38,6 +38,13 @@ namespace TddTotalAmount
             TotalAmountShoudBe(0, new DateTime(2018, 3, 31), new DateTime(2018, 3, 31));
         }
 
+        [TestMethod]
+        public void no_effective_days_period_after_budget_month()
+        {
+            GivenBudgets(new Budget() { YearMonth = "201804", Amount = 30 });
+            TotalAmountShoudBe(0, new DateTime(2018, 5, 1), new DateTime(2018, 5, 11));
+        }
+
         private void TotalAmountShoudBe(int expected, DateTime startDate, DateTime endDate)
         {
             var totalAmount = _accounting.TotalAmount(startDate, endDate);
