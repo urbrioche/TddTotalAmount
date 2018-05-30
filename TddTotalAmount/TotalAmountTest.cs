@@ -52,6 +52,13 @@ namespace TddTotalAmount
             TotalAmountShoudBe(1, new DateTime(2018, 3, 31), new DateTime(2018, 4, 1));
         }
 
+        [TestMethod]
+        public void one_effective_day_period_overlap_budget_month_LastDay()
+        {
+            GivenBudgets(new Budget() { YearMonth = "201804", Amount = 30 });
+            TotalAmountShoudBe(1, new DateTime(2018, 4, 30), new DateTime(2018, 5, 1));
+        }
+
         private void TotalAmountShoudBe(int expected, DateTime startDate, DateTime endDate)
         {
             var totalAmount = _accounting.TotalAmount(startDate, endDate);
