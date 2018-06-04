@@ -16,13 +16,12 @@ namespace TddTotalAmount
         {
             var period = new Period(startDate, endDate);
             var budgets = _repository.GetAll();
-            if (budgets.Any())
+            var totalAmount = 0m;
+            foreach (var budget in budgets)
             {
-                var budget = budgets[0];
-                return budget.EffectiveAmount(period);
+                totalAmount += budget.EffectiveAmount(period);
             }
 
-            return 0;
+            return totalAmount;
         }
     }
-}
