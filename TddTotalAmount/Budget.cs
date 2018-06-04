@@ -7,39 +7,29 @@ namespace TddTotalAmount
         public int Amount { get; set; }
         public string YearMonth { get; set; }
 
-        public DateTime FirstDay
+        private DateTime FirstDay
         {
             get { return DateTime.ParseExact(YearMonth + "01", "yyyyMMdd", null); }
         }
 
-        public DateTime LastDay
+        private DateTime LastDay
         {
-            get
-            {
-                var daysInMonth = DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month);
-                return DateTime.ParseExact(YearMonth + daysInMonth, "yyyyMMdd", null);
-            }
+            get { return DateTime.ParseExact(YearMonth + TotalDays, "yyyyMMdd", null); }
         }
 
-        public int TotalDays
+        private int TotalDays
         {
-            get
-            {
-                return DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month);
-            }
-        }
-
-        public int DailyAmount()
-        {
-            var dailyAmount = Amount / TotalDays;
-            return dailyAmount;
+            get { return DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month); }
         }
 
         public decimal EffectiveAmount(Period period)
         {
-            var dailyAmount = DailyAmount();
-            var days = period.OverlappingDays(new Period(FirstDay, LastDay));
-            return days * dailyAmount;
+            return period.OverlappingDays(new Period(FirstDay, LastDay)) * DailyAmount();
+        }
+
+        private int DailyAmount()
+        {
+            return Amount / TotalDays;
         }
     }
 }
