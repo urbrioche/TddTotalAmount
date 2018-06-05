@@ -23,5 +23,26 @@ namespace TddTotalAmount
                 return DateTime.ParseExact(YearMonth + daysInMonth, "yyyyMMdd", null);
             }
         }
+
+        public int TotalDays
+        {
+            get
+            {
+                return DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month);
+            }
+        }
+
+        public int DailyAmount()
+        {
+            var dailyAmount = Amount / TotalDays;
+            return dailyAmount;
+        }
+
+        public decimal EffectiveAmount(Period period)
+        {
+            var dailyAmount = DailyAmount();
+            var days = period.OverlappingDays(new Period(FirstDay, LastDay));
+            return days * dailyAmount;
+        }
     }
 }
