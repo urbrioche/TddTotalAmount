@@ -9,11 +9,16 @@ namespace TddTotalAmount
 
         public Period(DateTime startDate, DateTime endDate)
         {
+            if (startDate > endDate)
+            {
+                throw new ArgumentException();
+            }
+
             StartDate = startDate;
             EndDate = endDate;
         }
 
-        public int EffectiveDays(Budget budget, Period period)
+        public int EffectiveDays(Period period)
         {
             if (HasNoOverlapping(period))
             {
