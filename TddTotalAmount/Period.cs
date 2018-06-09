@@ -20,7 +20,9 @@ namespace TddTotalAmount
                 return 0;
             }
 
-            var days = (EndDate.AddDays(1) - StartDate).Days;
+            var effectiveEndDate = EndDate;
+            var effectiveStarDate = StartDate < budget.FirstDay ? budget.FirstDay : StartDate;
+            var days = (effectiveEndDate.AddDays(1) - effectiveStarDate).Days;
             return days;
         }
     }
