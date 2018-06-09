@@ -18,5 +18,15 @@ namespace TddTotalAmount
         }
 
         public int TotalDays => DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month);
+
+        public int DailyAmount()
+        {
+            return Amount / TotalDays;
+        }
+
+        public decimal EffectiveAmount(Period period)
+        {
+            return period.OverlappingDays(new Period(FirstDay, LastDay)) * DailyAmount();
+        }
     }
 }
