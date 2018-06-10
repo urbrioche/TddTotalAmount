@@ -20,7 +20,7 @@ namespace TddTotalAmount
             }
         }
 
-        private int TotalDays
+        public int TotalDays
         {
             get
             {

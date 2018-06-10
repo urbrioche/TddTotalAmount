@@ -18,7 +18,7 @@ namespace TddTotalAmount
             EndDate = endDate;
         }
 
-        public int EffectiveDays(Period period)
+        public int OverlappingDays(Period period)
         {
             if (HasNoOverlapping(period))
             {
