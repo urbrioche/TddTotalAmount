@@ -14,18 +14,22 @@ namespace TddTotalAmount
 
         public DateTime LastDay
         {
-            get
-            {
-                return DateTime.ParseExact(YearMonth + TotalDays, "yyyyMMdd", null);
-            }
+            get { return DateTime.ParseExact(YearMonth + TotalDays, "yyyyMMdd", null); }
         }
 
         public int TotalDays
         {
-            get
-            {
-                return DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month);
-            }
+            get { return DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month); }
+        }
+
+        public decimal EffectiveAmount(Period period)
+        {
+            return period.OverlappingDays(new Period(FirstDay, LastDay)) * DailyAmount();
+        }
+
+        public int DailyAmount()
+        {
+            return Amount / TotalDays;
         }
     }
 }
