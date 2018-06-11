@@ -14,10 +14,15 @@ namespace TddTotalAmount
 
         public DateTime LastDay
         {
+            get { return DateTime.ParseExact(YearMonth + TotalDays, "yyyyMMdd", null); }
+        }
+
+        private int TotalDays
+        {
             get
             {
                 var totalDays = DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month);
-                return DateTime.ParseExact(YearMonth + totalDays, "yyyyMMdd", null);
+                return totalDays;
             }
         }
     }
