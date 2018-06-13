@@ -68,6 +68,13 @@ namespace TddTotalAmount
             TotalAmountShouldBe(1, new DateTime(2018, 6, 30), new DateTime(2018, 5, 1));
         }
 
+        [TestMethod]
+        public void daily_amount()
+        {
+            GivenBudgets(new Budget() { YearMonth = "201804", Amount = 300 });
+            TotalAmountShouldBe(20, new DateTime(2018, 4, 1), new DateTime(2018, 4, 2));
+        }
+
         private void TotalAmountShouldBe(int expected, DateTime startDate, DateTime endDate)
         {
             var totalAmount = _accounting.TotalAmount(startDate, endDate);
