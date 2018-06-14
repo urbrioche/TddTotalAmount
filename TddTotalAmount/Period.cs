@@ -12,5 +12,11 @@ namespace TddTotalAmount
             StartDate = startDate;
             EndDate = endDate;
         }
+
+        public int EffectiveDays()
+        {
+            var days = (EndDate.AddDays(1) - StartDate).Days;
+            return days;
+        }
     }
 }
