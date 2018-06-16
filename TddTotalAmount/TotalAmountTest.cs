@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
@@ -30,9 +31,9 @@ namespace TddTotalAmount
             Assert.AreEqual(expected, totalAmount);
         }
 
-        private void GivenBudgets()
+        private void GivenBudgets(params Budget[] budgets)
         {
-            _repository.GetAll().Returns(new List<Budget>());
+            _repository.GetAll().Returns(budgets.ToList());
         }
     }
 }
