@@ -17,7 +17,7 @@ namespace TddTotalAmount
             get { return DateTime.ParseExact(YearMonth + TotalDays, "yyyyMMdd", null); }
         }
 
-        private int TotalDays
+        public int TotalDays
         {
             get { return DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month); }
         }
