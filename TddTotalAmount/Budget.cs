@@ -20,9 +20,19 @@ namespace TddTotalAmount
             }
         }
 
-        private int TotalDays
+        public int TotalDays
         {
             get { return DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month); }
+        }
+
+        public int DailyAmount()
+        {
+            return Amount / TotalDays;
+        }
+
+        public decimal EffectiveAmount(Period period)
+        {
+            return period.EffectiveDays(new Period(FirstDay, LastDay)) * DailyAmount();
         }
     }
 }
